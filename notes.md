@@ -92,8 +92,10 @@ add annotation class level : @SerenityTest
 it is coming from import net.serenitybdd.junit5.SerenityTest;
 Add a properties file with exact name serenity.properties right under project level
 add following lines to properties file
-serenity.project.name=B22 API Report
-serenity.test.root=b22
+```
+serenity.project.name=EU8 API Report
+serenity.test.root=eu8
+```
 9.In order to generate serenity report, we need to use maven goal
 
 if you are using command line: mvn clean verify cmd+enter or ctrl+enter if you dont have maven installed locally
