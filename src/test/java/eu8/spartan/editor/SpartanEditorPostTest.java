@@ -87,7 +87,7 @@ public class SpartanEditorPostTest extends SpartanNewBase {
          */
 
 
-    @ParameterizedTest(name = "New Spartan {index} - name: {0}")
+    @ParameterizedTest(name = "New Spartan {index}")
     @CsvFileSource(resources = "/SpartanData.csv",numLinesToSkip = 1)
     public  void  postSpartanWithCSV(String name, String gender,String phone){
         System.out.println("name = " + name);
