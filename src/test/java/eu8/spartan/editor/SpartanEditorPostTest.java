@@ -6,6 +6,7 @@ import net.serenitybdd.rest.Ensure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import utilities.SpartanNewBase;
 import utilities.SpartanUtil;
 
@@ -87,7 +88,13 @@ public class SpartanEditorPostTest extends SpartanNewBase {
 
 
     @ParameterizedTest(name = "New Spartan {index} - name: {0}")
+    @CsvFileSource(resources = "/SpartanData.csv",numLinesToSkip = 1)
+    public  void  postSpartanWithCSV(String name, String gender,String phone){
+        System.out.println("name = " + name);
+        System.out.println("gender = " + gender);
+        System.out.println("phone = " + phone);
 
+    }
     }
 
 
