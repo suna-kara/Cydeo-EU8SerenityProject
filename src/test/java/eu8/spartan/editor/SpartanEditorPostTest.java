@@ -5,6 +5,7 @@ import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 import utilities.SpartanNewBase;
 import utilities.SpartanUtil;
 
@@ -84,6 +85,8 @@ public class SpartanEditorPostTest extends SpartanNewBase {
             {0} , {1},{2} --> based on the order you provide as argument.
          */
 
+
+    @ParameterizedTest(name = "New Spartan {index} - name: {0}")
 
     }
 
