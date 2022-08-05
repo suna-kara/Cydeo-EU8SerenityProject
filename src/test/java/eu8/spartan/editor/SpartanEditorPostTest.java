@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import utilities.SpartanNewBase;
 import utilities.SpartanUtil;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static net.serenitybdd.rest.SerenityRest.given;
@@ -94,8 +95,60 @@ public class SpartanEditorPostTest extends SpartanNewBase {
         System.out.println("gender = " + gender);
         System.out.println("phone = " + phone);
 
+        Map<String,Object> bodyMap=new LinkedHashMap<>();
+        bodyMap.put("name",name);
+        bodyMap.put("gender",gender);
+        bodyMap.put("phone",phone);
+
+        System.out.println("bodyMap = " + bodyMap);
+
+        //send a post request as editor
+        given()
+                .auth().basic("editor","editor")
+                .accept(ContentType.JSON)
+                .contentType(ContentType.JSON)
+                .body(bodyMap)
+                .log().body()
+                .when()
+                .post("/spartans")
+                .then().log().all();
+
+        //status code is 201
+        Ensure.that("Status code is 201", x -> x.statusCode(201));
+        //content type is Json
+        Ensure.that("Content type is JSON", vR -> vR.contentType(ContentType.JSON));
+        //success message is A Spartan is Born!
+        Ensure.that("success message is correct",
+                thenPart -> thenPart.body("success",is("A Spartan is Born!"))
+        );
+        //id is not null
+        Ensure.that("id is not null",
+                thenPart -> thenPart.body("data.id",notNullValue())
+        );
+        //name is correct
+        Ensure.that("name is correct",
+                thenPart -> thenPart.body("data.name",is(bodyMap.get("name")))
+        );
+        //gender is correct
+        Ensure.that("gender is correct",
+                thenPart -> thenPart.body("data.gender",is(bodyMap.get("gender")))
+        );
+        //phone is correct
+        Ensure.that("phone is correct",
+                thenPart -> thenPart.body("data.phone",is(bodyMap.get("phone")))
+        );
+        //check location header ends with newly generated id
+        //get id and save
+        String id = lastResponse().jsonPath().getString("data.id");
+
+        Ensure.that("check location header ends with newly generated id",
+                vR -> vR.header("Location",endsWith(id))
+        );
+
     }
-    }
+
+}
+
 
 
 
