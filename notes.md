@@ -8,8 +8,8 @@ Here is the link for simple documentation.
 2.under pom.xml 1.add below property section
 
 <properties>
-<maven.compiler.source>8</maven.compiler.source>
-<maven.compiler.target>8</maven.compiler.target>
+<maven.compiler.source>11</maven.compiler.source>
+<maven.compiler.target>11</maven.compiler.target>
 <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 </properties>
 3.Add dependencies
